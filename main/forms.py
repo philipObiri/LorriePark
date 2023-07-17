@@ -16,3 +16,5 @@ class ListingForm(forms.ModelForm):
             "transmission",
             "image",
         }
+
+
