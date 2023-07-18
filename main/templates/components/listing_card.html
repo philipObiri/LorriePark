@@ -29,7 +29,7 @@
                 {% endif %}
             </div>
             <small class="text-muted mx-2">{{listing.updated_at}}</small>
-            <button id="" type="button" value="like" class="btn btn-secondary">
+            <button id="like_{{listing.id}}" type="button" value="like" class="btn btn-secondary">
                 {% if listing.id in liked_listings_ids %}
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart"
                     viewBox="0 0 16 16">
@@ -49,3 +49,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    $("#like_{{listing.id}}").click(function () {
+        // ajax requests :
+        $.ajax({
+            type: "POST",
+            url: "{% url 'like_listing' id=listing.id %}",
+            data: { 'csrfmiddlewaretoken': '{{csrf_token}}' },
+            dataType: "json",
+            success: function (r) {
+                $("#like_{{listing.id}}").find("svg").attr("fill", r.is_liked_by_user ? "red" : "black");
+            },
+            error: function (rs, e) {
+                alert(e);
+            }
+        });
+    });
+</script>

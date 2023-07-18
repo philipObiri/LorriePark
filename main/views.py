@@ -1,11 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from imp import reload
-from .models import Listing
+from .models import Listing, LikedListing
 from django.contrib.auth.decorators import login_required
 from .forms import ListingForm
 from users.forms import LocationForm
 from django.contrib import messages
 from .filters import ListingFilter
+from django.http import JsonResponse
+
 
 # Create your views here.
 
@@ -18,8 +20,13 @@ def main_vew(request):
 def home_view(request):
     listings = Listing.objects.all()
     listing_filter = ListingFilter(request.GET, queryset=listings)
+    user_liked_listings = LikedListing.objects.filter(
+        profile=request.user.profile
+    ).values_list("listing")
+    liked_listings_ids = [l[0] for l in user_liked_listings]
     context = {
         "listing_filter": listing_filter,
+        "liked_listings_ids": liked_listings_ids,
     }
     return render(request, "views/home.html", context)
 
@@ -108,4 +115,22 @@ def edit_view(request, id):
             "listing_form": listing_form,
             "location_form": location_form,
         },
+    )
+
+
+@login_required
+def like_listing_view(request, id):
+    listing = get_object_or_404(Listing, id=id)
+    liked_listing, created = LikedListing.objects.get_or_create(
+        profile=request.user.profile, listing=listing
+    )
+    if not created:
+        liked_listing.delete()
+    else:
+        liked_listing.save()
+
+    return JsonResponse(
+        {
+            "is_liked_by_user": created,
+        }
     )

@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.utils.decorators import method_decorator
-from main.models import Listing
+from main.models import Listing, LikedListing
 from users.forms import LocationForm, UserForm, ProfileForm
 
 
@@ -43,17 +43,6 @@ def logout_view(request):
     return redirect("main")
 
 
-# def register_view(request):
-#     register_form = UserCreationForm()
-#     return render(
-#         request,
-#         "views/register.html",
-#         {
-#             "register_form": register_form,
-#         },
-#     )
-
-
 class RegisterView(View):
     def get(self, request):
         register_form = UserCreationForm()
@@ -88,6 +77,9 @@ class RegisterView(View):
 class ProfileView(View):
     def get(self, request):
         user_listings = Listing.objects.filter(seller=request.user.profile)
+        user_liked_listings = LikedListing.objects.filter(
+            profile=request.user.profile
+        ).all()
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
         user_location = LocationForm(instance=request.user.profile.location)
@@ -99,11 +91,15 @@ class ProfileView(View):
                 "user_form": user_form,
                 "profile_form": profile_form,
                 "user_listings": user_listings,
+                "user_liked_listings": user_liked_listings,
             },
         )
 
     def post(self, request):
         user_listings = Listing.objects.filter(seller=request.user.profile)
+        user_liked_listings = LikedListing.objects.filter(
+            profile=request.user.profile
+        ).all()
         user_form = UserForm(request.POST, instance=request.user)
         profile_form = ProfileForm(
             request.POST, request.FILES, instance=request.user.profile
@@ -130,6 +126,6 @@ class ProfileView(View):
                 "user_form": user_form,
                 "profile_form": profile_form,
                 "user_listings": user_listings,
+                "user_liked_listings": user_liked_listings,
             },
         )
-
