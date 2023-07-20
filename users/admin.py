@@ -16,3 +16,5 @@ class LocationAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Location, LocationAdmin)
+
+
