@@ -32,9 +32,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(env("DEBUG"))
+DEBUG = bool(env("DEBUG", default=True))
 
-ALLOWED_HOSTS = [".vercel.app"]
+ALLOWED_HOSTS = [".vercel.app", ".now.sh", "build_files.sh", "127.0.0.1"]
 
 
 # Application definition
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -83,16 +84,44 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "lorrie_project.wsgi.application"
+WSGI_APPLICATION = "lorrie_project.wsgi.app"
 
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+
+# Railway Database
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "URL": os.getenv("DATABASE_URL"),
+#         "NAME": os.getenv("PGDATABASE"),
+#         "USER": os.getenv("PGUSER"),
+#         "PASSWORD": os.getenv("PGPASSWORD"),
+#         "HOST": os.getenv("PGHOST"),
+#         "PORT": os.getenv("PGPORT"),
+#     }
+# }
+
+
+# Vercel Database Configuration
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "URL": os.getenv("POSTGRES_URL"),
+        "NAME": os.getenv("POSTGRES_DATABASE"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "PORT": 5432,
     }
 }
 
@@ -133,6 +162,11 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")
+
+# White Noise Configuration
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Media files (Uploaded Files)
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
