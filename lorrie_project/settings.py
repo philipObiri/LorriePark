@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "whitenoise.runserver_nostatic",
+    # "whitenoise.runserver_nostatic",
     # third party apps
     "localflavor",
     "crispy_forms",
@@ -58,7 +58,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -85,7 +85,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "lorrie_project.wsgi.app"
+WSGI_APPLICATION = "lorrie_project.wsgi.application"
 
 
 # Database
@@ -167,7 +167,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")
 
 # White Noise Configuration
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Media files (Uploaded Files)
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
