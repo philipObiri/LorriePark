@@ -34,7 +34,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(env("DEBUG"))
 
-ALLOWED_HOSTS = [".vercel.app","build_files.sh", "127.0.0.1","localhost"]
+ALLOWED_HOSTS = [".vercel.app", "build_files.sh", "127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -163,7 +163,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATICFILES_DIRS = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")
 
 # White Noise Configuration
