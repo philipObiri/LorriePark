@@ -34,7 +34,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(env("DEBUG"))
 
-ALLOWED_HOSTS = [".vercel.app", ".now.sh", "build_files.sh", "127.0.0.1"]
+ALLOWED_HOSTS = [".vercel.app","build_files.sh", "127.0.0.1","localhost"]
 
 
 # Application definition
