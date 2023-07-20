@@ -3,11 +3,4 @@ venv
 media
 .env
 
-search.svg
-Movie.jsx
-App.js
-App.css
-
-calc.html
-calc.css
-calc.js
+staticfiles_build

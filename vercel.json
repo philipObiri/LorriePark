@@ -23,6 +23,5 @@
       "src": "/(.*)",
       "dest": "lorrie_project/wsgi.py"
     }
-  ],
-  "outputDirectory": "staticfiles_build"
+  ]
 }
