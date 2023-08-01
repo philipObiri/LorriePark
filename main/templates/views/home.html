@@ -24,8 +24,16 @@
             </div>
             {% endif %}
         </div>
+        {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
     </div>
 </header>
+
 <main>
     <section class="py-5 container">
         <div class="row py-lg-5">

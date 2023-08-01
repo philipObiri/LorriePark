@@ -32,9 +32,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(env("DEBUG"))
+DEBUG =False
 
-ALLOWED_HOSTS = [".vercel.app", "build_files.sh", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["philipobiri.pythonanywhere.com","127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -91,40 +91,27 @@ WSGI_APPLICATION = "lorrie_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
+# Local Database Configuration
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 
 
-# Railway Database
+# Vercel Database Configuration (Production)
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql",
-#         "URL": os.getenv("DATABASE_URL"),
-#         "NAME": os.getenv("PGDATABASE"),
-#         "USER": os.getenv("PGUSER"),
-#         "PASSWORD": os.getenv("PGPASSWORD"),
-#         "HOST": os.getenv("PGHOST"),
-#         "PORT": os.getenv("PGPORT"),
+#         "URL": os.getenv("POSTGRES_URL"),
+#         "NAME": os.getenv("POSTGRES_DATABASE"),
+#         "USER": os.getenv("POSTGRES_USER"),
+#         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+#         "HOST": os.getenv("POSTGRES_HOST"),
+#         "PORT": 5432,
 #     }
 # }
-
-
-# Vercel Database Configuration
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "URL": os.getenv("POSTGRES_URL"),
-        "NAME": os.getenv("POSTGRES_DATABASE"),
-        "USER": os.getenv("POSTGRES_USER"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "HOST": os.getenv("POSTGRES_HOST"),
-        "PORT": 5432,
-    }
-}
 
 
 # Password validation
@@ -163,7 +150,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")
 
 # White Noise Configuration
