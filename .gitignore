@@ -5,3 +5,10 @@ media
 vercel.json
 build_files.sh
 staticfiles_build
+.vscode
+dj_venv
+
+virtual_env
+
+
+__pycache__

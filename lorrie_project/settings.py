@@ -14,6 +14,7 @@ import environ
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,9 +33,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =False
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = ["philipobiri.pythonanywhere.com","127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost",]
 
 
 # Application definition
@@ -100,18 +101,7 @@ DATABASES = {
 }
 
 
-# Vercel Database Configuration (Production)
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "URL": os.getenv("POSTGRES_URL"),
-#         "NAME": os.getenv("POSTGRES_DATABASE"),
-#         "USER": os.getenv("POSTGRES_USER"),
-#         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-#         "HOST": os.getenv("POSTGRES_HOST"),
-#         "PORT": 5432,
-#     }
-# }
+
 
 
 # Password validation
@@ -151,7 +141,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # White Noise Configuration
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
