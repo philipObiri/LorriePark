@@ -2,6 +2,14 @@
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black) -->
 
 ## About Lorrie Park 
+A web platform for modern and used car listings.
+Users can :
+- Create an account 
+- Login , Once Authenticated .
+- Create and Modify your Profile
+- Post your own car listing 
+- Get reviews on posts in real time 
+- User posts can get liked by other users on the platform
 
 ## Basic Commands
 
