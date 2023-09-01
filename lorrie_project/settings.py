@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
-import environ
+import dj_database_url
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
@@ -20,22 +20,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Initialise an instance of the environ
-env = environ.Env()
+# env = environ.Env()
 
 
 # Take environment variables from .env file
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+# environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", "d*65-hf8wqhd873yte86yt784F8y78")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
+# DEBUG = "RENDER" not in os.environ
+DEBUG = "False"
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost","onrender.com"]
+# https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ["*"]
+
+# RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+# if RENDER_EXTERNAL_HOSTNAME:
+#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -91,9 +97,6 @@ WSGI_APPLICATION = "lorrie_project.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-
-
 if not DEBUG:
     DATABASES = {'default': env('DATABASE_URL')}
 else:
@@ -104,6 +107,18 @@ else:
         }}
 
 
+
+
+# Production Database Conf
+# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Feel free to alter this value to suit your needs.
+#         default='postgresql://postgres:postgres@localhost:5432/mysite',
+#         conn_max_age=600
+#     )
+# }
 
 
 
@@ -166,11 +181,11 @@ MESSAGES_TAGS = {
 
 # EMAIL CONFIGURATION :
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_HOST =os.environ.get("EMAIL_HOST")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = env("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD =os.environ.get("EMAIL_HOST_PASSWORD")
 
 # LOGIN SETTINGS
 LOGIN_URL = "/login/"

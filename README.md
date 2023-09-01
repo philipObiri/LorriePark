@@ -1,14 +1,21 @@
 <!-- [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black) -->
 
-## About Lorrie Park 
+<img src="./demo/screenshot01.PNG" width=450>
+<img src="./demo/screenshot02.PNG" width=450>
+<img src="./demo/screenshot03.PNG" width=450>
+
+## About Lorrie Park
+
 A web platform for modern and used car listings.
 Users can :
-- Create an account 
+
+- Create an account
 - Login , Once Authenticated .
 - Create and Modify your Profile
-- Post your own car listing 
-- Get reviews on posts in real time 
+- Post your own car listing
+- Find, Like and Save Other people's post you find interesting
+- Get reviews on posts in real time via Email
 - User posts can get liked by other users on the platform
 
 ## Basic Commands
@@ -23,7 +30,6 @@ Users can :
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
-
 ### Test coverage
 
 To run the tests, check your test coverage, and generate an HTML coverage report:
@@ -31,7 +37,3 @@ To run the tests, check your test coverage, and generate an HTML coverage report
     $ coverage run -m pytest
     $ coverage html
     $ open htmlcov/index.html
-
-
-
-
