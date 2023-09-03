@@ -1,0 +1,14 @@
+SECRET_KEY=
+
+#DEBUG = 
+
+EMAIL_HOST=
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
+EMAIL_PORT=
+EMAIL_USE_TLS=
+
+
+# PostgreSQL
+# ------------------------------------------------------------------------------
+# DATABASE_URL=postgres://postgres:team123py456@127.0.0.1:5432/bulksms
