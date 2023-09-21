@@ -54,10 +54,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "whitenoise.runserver_nostatic",
+
     # third party apps
     "localflavor",
     "crispy_forms",
     "django_filters",
+
     # Locally Installed Apps
     "main.apps.MainConfig",
     "users.apps.UsersConfig",
@@ -73,6 +75,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+
 
 ROOT_URLCONF = "lorrie_project.urls"
 
@@ -159,7 +163,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = BASE_DIR/'assets'
 
 # White Noise Configuration
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
