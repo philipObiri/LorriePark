@@ -37,7 +37,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "d*65-hf8wqhd873yte86yt784F8y78")
 DEBUG = "False"
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "lorrie-park.onrender.com"]
 
 # RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 # if RENDER_EXTERNAL_HOSTNAME:
