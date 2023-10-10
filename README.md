@@ -1,9 +1,9 @@
 <!-- [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black) -->
 
-<img src="./demo/screenshot01.PNG" width=750>
-<img src="./demo/screenshot02.PNG" width=750>
-<img src="./demo/screenshot03.PNG" width=750>
+<img src="./demo/screenshot01.PNG" width=900>
+<img src="./demo/screenshot02.PNG" width=900>
+<img src="./demo/screenshot03.PNG" width=900>
 
 ## About Lorrie Park
 
